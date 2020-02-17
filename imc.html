@@ -4,6 +4,22 @@
 		<meta charset="UTF-8">
 		<title>IMC</title>
 		
+		<!-- Mobile Specific Metas
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- FONT
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+		<!-- CSS
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skeleton.css">
+		<style>
+			img{
+				display: block;
+				width: 100%;
+			}
+		</style>
 		<script type="text/javascript">
 			//window.alert ("Bienvenido");
 			console.log("Ha entrado en la página");
@@ -27,6 +43,35 @@
 						}
 				return imc_nominal;
 			}
+			//Intento función elegir imagen
+						function elegirImg (nominal){
+		//Definir imágenes
+		let desnutrido = "img/desnutrido.jpg";
+		let delgado = "img/delgado.jpg";
+		let ideal = "img/ideal.jpg";
+		let sobrepeso = "img/sobrepeso.jpg";
+		let obeso = "img/obeso.jpg";
+		let imgJonah = "";
+
+		if (nominal == "Desnutrido."){
+		imgJonah = desnutrido
+		}
+		else if (nominal == "Delgado."){
+		imgJonah = delgado
+		}
+		else if (nominal == "Ideal."){
+		imgJonah = ideal
+		}
+		else if (nominal == "Sobrepeso."){
+		imgJonah = sobrepeso
+		}
+		else  {
+		imgJonah = obeso
+		}
+		return imgJonah;
+		console.log(imgJonah)
+		}
+
 			//Función para calcular número IMC
 			function calcularIMC() {
 				let altura = document.getElementById("inAltura").value;
@@ -39,42 +84,51 @@
 				console.log("IMC es " + imc_nominal);
 				document.getElementById("spEscala").value = imc_nominal;
 				
+				//Introducir imagen en nuevo elemento
+				//Crear elemento img
+				let elemento_img = document.createElement("img");
+				//Cargar el src
+				//elemento_img.src = obeso;
+				//Intento de cargar src con function
+				elemento_img.src = elegirImg(imc_nominal);
+				//Buscar elemento padre
+				let elemento_padre = document.getElementById("hook_imagen");
+				//Cargar child en padre
+				elemento_padre.appendChild(elemento_img);
+				console.log("N hijos "+ elemento_padre.childElementCount);
+					//Para quitarlos
+				//elemento_padre.removeChild(elemento_img);
+				//console.log("N hijos "+ elemento_padre.childElementCount);
+				//Para actualizarlos
+				elemento_padre.replaceChild(elemento_img, POROTROOOOO);
 				}
-		
 		</script>
-		<style type="text/css">
-			label{
-				width: 100px;
-				display: inline-block;
-			}
-			fieldset {
-				width:55%;
-				display:block;
-				margin:50px auto;
-				box-shadow:10px 10px 15px 0px rgba(0,0,0,0.53);
-			}
-		</style>
 	</head>
 	<body>
-		<h1>Calculadora de Índice de Masa Corporal</h1>
-		<h2>PRUEBA GIT</h2>
-		<form action="">
-			<fieldset>
-				<legend>Introduce los siguientes datos:</legend>
-				<label for="peso">Peso:</label>
-				<input type="text" placeholder="68" id="inPeso"><br>
-				<label for="altura">Altura:</label>
-				<input type="text" placeholder="1.70" id="inAltura"><br>
-				<input id="btnCalcular" type="button" onclick="calcularIMC()" value="Calcular">
-				
-				
-			</fieldset>
-			
-			<fieldset>
-				<legend>Resultado:</legend>
-				<input readonly id="inResultado">
-				<div>Usted se encuentra en el grupo:</div> <input id="spEscala">
-			</fieldset>
-		</form>
-	</body>
-</html>
+		<div class="container">
+			<h1>Calculadora de Índice de Masa Corporal <span style="font-style: italic;">a le Jonah Hill</span></h1>
+			<div class="row">
+				<div class="seven columns">
+					<form action="">
+						<fieldset>
+							<legend>Introduce los siguientes datos: </legend>
+							<label for="peso">Peso:</label>
+							<input type="text" placeholder="68" id="inPeso"><br>
+							<label for="altura">Altura:</label>
+							<input type="text" placeholder="1.70" id="inAltura"><br>
+							<input class="button" id="btnCalcular" type="button" onclick="calcularIMC()" value="Calcular">
+						</fieldset>
+						<fieldset>
+							<legend>Resultado:</legend>
+							<input readonly id="inResultado">
+							<div>Usted se encuentra en el grupo:</div> <input id="spEscala">
+						</fieldset>
+					</form>
+					</div> <!--cierre .seven-->
+					<div class="five columns" id="hook_imagen">
+						
+						</div> <!--cierre .five-->
+						</div><!--cierre .row-->
+						</div> <!--cierre .container-->
+					</body>
+				</html>
