@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>IMC</title>
+		
+		<script type="text/javascript">
+			//window.alert ("Bienvenido");
+			console.log("Ha entrado en la página");
+			//Devolver IMC Nominal
+				function obtenerIMCNominal(imc_numerico) {
+				let imc_nominal = "";
+				if (imc_numerico < 16) {
+						imc_nominal = "Desnutrido."
+						}
+				else if ((imc_numerico >= 16) && (imc_numerico<18)) {
+						imc_nominal = "Delgado."
+						}
+				else if ((imc_numerico >= 18) && (imc_numerico<25)) {
+						imc_nominal = "Ideal."
+						}
+				else if ((imc_numerico >= 25) && (imc_numerico<31)) {
+						imc_nominal = "Sobrepeso."
+						}
+				else  {
+						imc_nominal = "Obeso."
+						}
+				return imc_nominal;
+			}
+			//Función para calcular número IMC
+			function calcularIMC() {
+				let altura = document.getElementById("inAltura").value;
+				let peso = document.getElementById("inPeso").value;
+				altura = Math.pow(altura, 2);
+				let resultado = peso / altura;
+				document.getElementById("inResultado").value = Math.round(resultado);
+				console.log(resultado);
+				let imc_nominal = obtenerIMCNominal(resultado);
+				console.log("IMC es " + imc_nominal);
+				document.getElementById("spEscala").value = imc_nominal;
+				
+				}
+		
+		</script>
+		<style type="text/css">
+			label{
+				width: 100px;
+				display: inline-block;
+			}
+			fieldset {
+				width:55%;
+				display:block;
+				margin:50px auto;
+				box-shadow:10px 10px 15px 0px rgba(0,0,0,0.53);
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Calculadora de Índice de Masa Corporal</h1>
+		<form action="">
+			<fieldset>
+				<legend>Introduce los siguientes datos:</legend>
+				<label for="peso">Peso:</label>
+				<input type="text" placeholder="68" id="inPeso"><br>
+				<label for="altura">Altura:</label>
+				<input type="text" placeholder="1.70" id="inAltura"><br>
+				<input id="btnCalcular" type="button" onclick="calcularIMC()" value="Calcular">
+				
+				
+			</fieldset>
+			
+			<fieldset>
+				<legend>Resultado:</legend>
+				<input readonly id="inResultado">
+				<div>Usted se encuentra en el grupo:</div> <input id="spEscala">
+			</fieldset>
+		</form>
+	</body>
+</html>
