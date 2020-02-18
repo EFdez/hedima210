@@ -43,35 +43,41 @@
 						}
 				return imc_nominal;
 			}
-			//Intento función elegir imagen
-						function elegirImg (nominal){
-		//Definir imágenes
-		let desnutrido = "img/desnutrido.jpg";
-		let delgado = "img/delgado.jpg";
-		let ideal = "img/ideal.jpg";
-		let sobrepeso = "img/sobrepeso.jpg";
-		let obeso = "img/obeso.jpg";
-		let imgJonah = "";
-
+			//Intento función elegir imagen (tb se puede SWITCH)
+		function elegirImg (nominal){
+		//Llamada a función crear img
+		let imgJonah = obtenerElementoImg();
 		if (nominal == "Desnutrido."){
-		imgJonah = desnutrido
+		imgJonah.src = "img/desnutrido.jpg"
 		}
 		else if (nominal == "Delgado."){
-		imgJonah = delgado
+		imgJonah.src = "img/delgado.jpg"
 		}
 		else if (nominal == "Ideal."){
-		imgJonah = ideal
+		imgJonah.src = "img/ideal.jpg"
 		}
 		else if (nominal == "Sobrepeso."){
-		imgJonah = sobrepeso
+		imgJonah.src = "img/sobrepreso1.jpg"
 		}
 		else  {
-		imgJonah = obeso
+		imgJonah.src = "img/obeso.jpg"
 		}
-		return imgJonah;
-		console.log(imgJonah)
 		}
-
+		//Ver si img creada, si no crear, si sí actualizar
+		//ENTRADAS (nada), SALIDAS (el img), FUNCIONALIDAD, PRECONDICIONES Y POSTCONDICIONES
+		function obtenerElementoImg(){
+			let elemento_img;
+			let padre = document.getElementById("hook_imagen");
+			if (padre.childElementCount == 0){
+				console.log("No hay hijos.");
+				elemento_img = document.createElement("img");
+				padre.appendChild(elemento_img);
+			} else {
+				console.log("El img ya existe");
+				elemento_img = padre.firstChild;
+			}
+			return elemento_img;
+		}
 			//Función para calcular número IMC
 			function calcularIMC() {
 				let altura = document.getElementById("inAltura").value;
@@ -83,24 +89,8 @@
 				let imc_nominal = obtenerIMCNominal(resultado);
 				console.log("IMC es " + imc_nominal);
 				document.getElementById("spEscala").value = imc_nominal;
-				
-				//Introducir imagen en nuevo elemento
-				//Crear elemento img
-				let elemento_img = document.createElement("img");
-				//Cargar el src
-				//elemento_img.src = obeso;
-				//Intento de cargar src con function
-				elemento_img.src = elegirImg(imc_nominal);
-				//Buscar elemento padre
-				let elemento_padre = document.getElementById("hook_imagen");
-				//Cargar child en padre
-				elemento_padre.appendChild(elemento_img);
-				console.log("N hijos "+ elemento_padre.childElementCount);
-					//Para quitarlos
-				//elemento_padre.removeChild(elemento_img);
-				//console.log("N hijos "+ elemento_padre.childElementCount);
-				//Para actualizarlos
-				elemento_padre.replaceChild(elemento_img, POROTROOOOO);
+				elegirImg(imc_nominal);
+			
 				}
 		</script>
 	</head>
@@ -125,10 +115,8 @@
 						</fieldset>
 					</form>
 					</div> <!--cierre .seven-->
-					<div class="five columns" id="hook_imagen">
-						
-						</div> <!--cierre .five-->
-						</div><!--cierre .row-->
-						</div> <!--cierre .container-->
-					</body>
-				</html>
+					<div class="five columns" id="hook_imagen"></div> <!--cierre .five-->
+					</div><!--cierre .row-->
+					</div> <!--cierre .container-->
+				</body>
+			</html>
