@@ -16,32 +16,33 @@
 		<link rel="stylesheet" href="css/skeleton.css">
 		
 		<script type="text/javascript">
-	
-		//window.onload = calcularNumeroSecreto(); hecho sin función
+		
+		window.onload = calcularNumeroSecreto;
+		var num_secreto = 0;
+		const MAX_VIDAS = 5;
+		var numero_intentos = 0;
+		var acertado = false;
 
 
-				let num_secreto = Math.floor(Math.random() * 10) + 1;
+			function calcularNumeroSecreto() {
+				num_secreto = Math.floor(Math.random() * 10) + 1;
 				console.log("El número secreto es: " + num_secreto);
-
-			const MAX_VIDAS = 5;
-			var numero_intentos = 0;
-			var acertado = false;
-
-
+			}
+			
 			function comprobarNumero(){
 				console.log("El usuario quiere comprobar su numero");
 				let num_usuario = document.getElementById("numeroElegido").value;
-
 				console.log("El número elegido por el usuario es: " + num_usuario)
 
+				//Definir e iniciar número de intentos
 				numero_intentos = (numero_intentos + 1);
+				console.log(numero_intentos);
 
 
 				if (num_usuario == num_secreto) {
 					console.log("Acierto");
 					window.alert("Has acertado")
 					acertado = true;
-
 				}
 				else if (num_usuario < num_secreto){
 					console.log("El número buscado es mayor");
@@ -52,22 +53,16 @@
 					window.alert("El número buscado es menor")
 				}
 
-				//TODO DEFINIR E INICIAR NÚMERO DE INTENTOS
-
+				// Comprobar número de intentos
 				if (numero_intentos == MAX_VIDAS && (!acertado)){
 					console.log("Fin del juego");
-					window.alert("Fin del juego");
-
+					window.alert("Fin del juego. Reinicio.");
+					window.location.reload(true); //recargo página
 				}
-
 				else if (numero_intentos < MAX_VIDAS){
-
 				}
-
 			}
-
 			
-
 			
 		</script>
 	</head>
@@ -81,12 +76,12 @@
 						<fieldset>
 							
 							<label for="">Introduce un número:</label>
-							<input type="text" id="numeroElegido" >
+							<input type="number" id="numeroElegido" >
 							<input type="button" value="Prueba" class="button" onclick="comprobarNumero()">
 						</fieldset>
 					</form>
-				</div> <!--cierre column-->
-			</div> <!--cierre row-->
-		</div> <!--cierre container-->
-	</body>
-</html>
+					</div> <!--cierre column-->
+					</div> <!--cierre row-->
+					</div> <!--cierre container-->
+				</body>
+			</html>
