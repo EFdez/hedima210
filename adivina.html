@@ -18,7 +18,7 @@
 		<script type="text/javascript">
 		
 		window.onload = calcularNumeroSecreto;
-		var num_secreto = 0;
+		var num_secreto;
 		const MAX_VIDAS = 5;
 		var numero_intentos = 0;
 		var acertado = false;
@@ -43,6 +43,7 @@
 					console.log("Acierto");
 					window.alert("Has acertado")
 					acertado = true;
+
 				}
 				else if (num_usuario < num_secreto){
 					console.log("El número buscado es mayor");
@@ -59,8 +60,7 @@
 					window.alert("Fin del juego. Reinicio.");
 					window.location.reload(true); //recargo página
 				}
-				else if (numero_intentos < MAX_VIDAS){
-				}
+
 			}
 			
 			
