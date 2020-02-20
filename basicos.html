@@ -101,20 +101,37 @@
 
 			//5) HACER UN MÉTODO QUE RECIBA UNA NOTA DE 0 A 10 Y DIGA SI EQUIVALE A UN APROBADO, BIEN, NOTABLE, O SOBRESALIENTE
 
-			/*function ejercicio5(num){
+			function ejercicio5(){
 				var num = document.getElementById("nota").value;
+				
 
-				switch (num) {
+				switch (nota) {
 					case 5:
-					alert(Aprobado);
+					alert("Aprobado");
 					break;
 
 					case 6:
-					alert(Bien);
+					alert("Bien");
+					break;
 
+					case 7:
+					alert("Notable");
+					break;
 
+					case 8:
+					alert("Notable");
+					break;
+
+					case 9:
+					alert("Sobresaliente");
+					break;
+
+					case 10:
+					alert("Sobresaliente");
+					break;
 				}
-			}*/
+
+			}
 
 
 
@@ -171,8 +188,8 @@
 				ejercicio2("palabra", "a");
 				ejercicio3();
 				/*ejercicio4();
-				ejercicio5();
-				ejercicio6();
+				ejercicio5(8);
+				/*ejercicio6();
 				ejercicio7();*/
 			}
 
@@ -207,6 +224,13 @@
 				<p>Introduce tu edad:</p>
 				<input type="number" placeholder="Edad" id="edad">
 				<input type="button" value="Enviar" onclick="ejercicio4(edad)">
+			</div>
+
+			<div class="row">
+				<h2>Ejercicio 5</h2>
+				<p>Introduce la nota:</p>
+				<input type="number" placeholder="Nota" id="nota">
+				<input type="button" value="Enviar" onclick="ejercicio5()">
 			</div>
 		</div>
 	</div>
