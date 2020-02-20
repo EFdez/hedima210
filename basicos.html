@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicios Básicos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- FONT
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+		<!-- CSS
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skeleton.css">
+
+		<script>
+			
+			window.onload = basicos;
+			//A función por ejercicio
+
+			//1) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARACTER Y DIGA SI ESE CARACTER PERTENECE A LA CADENA O NO
+
+			function ejercicio1(palabra, letra){
+				//si palabra contiene letra, devolver true
+				//si no, false
+				//console.log(palabra.includes(letra));
+				var palabra = document.getElementById('palabra').value;
+				var letra = document.getElementById('caracter').value;
+				console.log(palabra, letra);
+				console.log(palabra.includes(letra));
+				var resultado = (palabra.includes(letra)) ;
+
+				if (resultado == true) {
+					alert("Sí la contiene")
+				}
+				else {
+					alert("No la contiene")
+				}
+			}
+
+			//2) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARaCTER Y DIGA CUÁNTAS VECES APARECE ESE CARaCTER EN LA CADENA
+
+			function ejercicio2(palabra, caracter){
+				console.log(palabra.includes(caracter));
+				console.log(palabra.match(/a/g));
+
+
+			}
+
+			function ejercicio2bis(string, letra){
+				var string = document.getElementById("string").value;
+				var letra = document.getElementById("letra").value;
+				var coincide = 0;
+
+
+				for (var i = 0; i< (string.length); i++) {
+					console.log(string.charAt(i));
+					var letra_en_curso = string.charAt(i);
+						
+					if (letra == letra_en_curso){
+						console.log("Coincide");
+						coincide++;
+					}
+					else {
+						console.log("No coincide.")
+					}	
+				}
+				console.log("La letra "+ letra +" aparece "+ coincide +" veces en la palabra " + string+ ". ")
+				alert("La letra "+ letra +" aparece "+ coincide +" veces en la palabra " + string+ ". ")
+
+
+			}
+
+			//3) HACER UN MÉTODO QUE DADO UN NÚMERO, DIGA SI ES PAR O NO
+
+			function ejercicio3(){
+				var i = 7;
+
+				if (i % 2 == 0){
+					alert("PAR")
+				}
+
+				else {
+					alert("IMPAR")
+				}
+
+			}
+
+			//4) HACER UN MÉTODO QUE LE PIDA AL USUARIO SU EDAD Y LE DIGA SI ES MAYOR DE EDAD O NO
+
+			function ejercicio4(edad){
+				var edad = document.getElementById("edad").value;
+
+				if (edad >= 18){
+					alert("Eres mayor de edad.")
+				}
+				else {
+					alert("No eres mayor de edad.")
+				}
+			}
+
+
+			//5) HACER UN MÉTODO QUE RECIBA UNA NOTA DE 0 A 10 Y DIGA SI EQUIVALE A UN APROBADO, BIEN, NOTABLE, O SOBRESALIENTE
+
+			/*function ejercicio5(num){
+				var num = document.getElementById("nota").value;
+
+				switch (num) {
+					case 5:
+					alert(Aprobado);
+					break;
+
+					case 6:
+					alert(Bien);
+
+
+				}
+			}*/
+
+
+
+
+
+
+			//7) HACER UN PROGRAMA QUE MUESTRE LA SECUENCIA 3, 6, 9, 12, 15 ...99
+
+			//WHILE string
+			/*function ejercicio7(){
+				var i = 0;
+				var resultado = "";
+				while(i < 99) {
+					i += 3;
+					resultado = resultado + i + "," ;
+				}
+				console.log(resultado.substring(0,resultado.length-1));
+				/*console.log("Longitud de resultado: " + resultado.length);
+				var ultimo_caracter = resultado.charAt(95);
+				var ultimo_caracter = resultado.charAt(resultado.length - 1);
+				console.log("Último caracter: " + ultimo_caracter);
+				console.log("Sin el último caracter: " + resultado.substring(0,resultado.length-1));
+				}
+
+			//WHILE
+			/*function ejercicio7(){
+				var i = 0;
+				while(i < 99) {
+					i += 3;
+				console.log(i);
+				}
+				
+			}*/
+
+			//DO WHILE
+			function ejercicio7() {
+				var i = 0;
+
+				do {
+					i += 3;
+					console.log(i);
+				}
+				while (i != 99);	
+			}
+
+			/*function ejercicio7(){
+				for (var i = 3; i <=99; i += 3) {
+					console.log(i);
+				}
+			}*/
+
+			function basicos() {
+				/*ejercicio1("cocreta", "s");*/
+				ejercicio2("palabra", "a");
+				ejercicio3();
+				/*ejercicio4();
+				ejercicio5();
+				ejercicio6();
+				ejercicio7();*/
+			}
+
+		</script>
+</head>
+<body>
+	<div class="container">
+		
+		<div class="row">
+			<div class="ten column">
+				<h1>Ejercicios Básicos</h1>
+			</div>
+
+			<div class="row">
+				<h2>Ejercicio 1</h2>
+				<p>Comprobar si la palabra contiene un caracter:</p>
+				<input type="text" placeholder="Palabra" id="palabra">
+				<input type="text" placeholder="Caracter" id="caracter">
+				<input type="button" value="Enviar" onclick="ejercicio1(palabra, caracter)">
+			</div>
+
+			<div class="row">
+				<h2>Ejercicio 2</h2>
+				<p>Comprobar si la palabra contiene un caracter y que lo devuelva:</p>
+				<input type="text" placeholder="Palabra" id="string">
+				<input type="text" placeholder="Caracter" id="letra">
+				<input type="button" value="Enviar" onclick="ejercicio2bis(palabra, caracter)">
+			</div>
+
+			<div class="row">
+				<h2>Ejercicio 4</h2>
+				<p>Introduce tu edad:</p>
+				<input type="number" placeholder="Edad" id="edad">
+				<input type="button" value="Enviar" onclick="ejercicio4(edad)">
+			</div>
+		</div>
+	</div>
+	
+	
+</body>
+</html>

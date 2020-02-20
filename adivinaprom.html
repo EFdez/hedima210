@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Adivina el número prom</title>
-
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- FONT
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -18,59 +17,47 @@
 			}
 		</style>
 		<script type="text/javascript">
-	
 		
-
+		
 		var num_secreto = Math.floor(Math.random() * 10) + 1;
 		console.log("El número secreto es: " + num_secreto);
 		
-		const MAX_VIDAS = 5;
-		var numero_intentos = 0;
+		const VIDAS = 0;
+		var numero_intentos = 5;
 		var acertado = false;
-
 		window.onload = pedirNumero;
 
+
 		function pedirNumero(){
-
 			do {
-
-			var numero_string = window.prompt("ADIVINA NÚMERO");	
+				var numero_string = window.prompt("ADIVINA NÚMERO");
 			var num_usuario = parseInt(numero_string); //CASTING
 			console.log(num_usuario);
-			numero_intentos++;
-
-
-
+			numero_intentos--;
 				if (num_usuario == num_secreto) {
 					console.log("Acierto");
 					window.alert("Has acertado")
 					acertado = true;
-
 				}
 				else if (num_usuario < num_secreto){
 					console.log("El número buscado es mayor");
-					window.alert("El número buscado es mayor")
+					window.alert("El número buscado es mayor. Numero de intentos restantes: " + numero_intentos);
 				}
 				else {
 					console.log("El número buscado es menor");
-					window.alert("El número buscado es menor")
-				}
-
+					window.alert("El número buscado es menor. Numero de intentos restantes: " + numero_intentos)
 				
-
+				}
+				
 			}
-
-			while((numero_intentos<MAX_VIDAS) && (!acertado))
+			while((numero_intentos>VIDAS) && (!acertado))
 				if (!acertado){
 					console.log("Ha excedido el número de intentos");
 					window.alert("Fin del juego. Reinicio.");
 					window.location.reload(true); //recargo página
 				}
-
 			
-
 		}
-
 		</script>
 	</head>
 	<body>
@@ -79,6 +66,8 @@
 				<div class="column 10">
 					<h1>Adivina el número</h1>
 					<p>Introduce un número del 1 al 10</p>
+
+				
 					
 					</div> <!--cierre column-->
 					</div> <!--cierre row-->
@@ -86,3 +75,5 @@
 					
 				</body>
 			</html>
+
+	
