@@ -37,6 +37,27 @@
 				}
 			}
 
+			function ejercicio1v2(palabra, letra){
+
+				var str = palabra;
+				var buscar = letra;
+
+				var resultado_num = str.indexOf(buscar);
+				var resultado = false;
+
+				console.log(resultado_num);
+
+				if (resultado_num != -1){
+					resultado = true;
+				}
+				else {
+					resultado = false;
+				}
+
+				console.log(resultado);
+
+			}
+
 			//2) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARaCTER Y DIGA CUÁNTAS VECES APARECE ESE CARaCTER EN LA CADENA
 
 			function ejercicio2(palabra, caracter){
@@ -88,6 +109,11 @@
 			//4) HACER UN MÉTODO QUE LE PIDA AL USUARIO SU EDAD Y LE DIGA SI ES MAYOR DE EDAD O NO
 
 			function ejercicio4(edad){
+
+				//también se puede hacer mediante prompt
+				//var respuesta = window.prompt("Ingrese su eddad");
+				//como el prompt devuelve STRING se precisa de CASTING de OT.
+				//var edad = parseInt(respuesta);
 				var edad = document.getElementById("edad").value;
 
 				if (edad >= 18){
@@ -102,40 +128,54 @@
 			//5) HACER UN MÉTODO QUE RECIBA UNA NOTA DE 0 A 10 Y DIGA SI EQUIVALE A UN APROBADO, BIEN, NOTABLE, O SOBRESALIENTE
 
 			function ejercicio5(){
-				var num = document.getElementById("nota").value;
+				var nota = document.getElementById("nota").value;
+
+				if(nota < 0) {nota=0}
+				else if (nota > 10){nota = 10}
+				else{nota=nota}
 				
-
-				switch (nota) {
-					case 5:
-					alert("Aprobado");
-					break;
-
-					case 6:
-					alert("Bien");
-					break;
-
-					case 7:
-					alert("Notable");
-					break;
-
-					case 8:
-					alert("Notable");
-					break;
-
-					case 9:
-					alert("Sobresaliente");
-					break;
-
-					case 10:
-					alert("Sobresaliente");
-					break;
+				if (nota < 5 ){
+					alert("Suspenso");
 				}
 
+				else if (nota == 5){
+					alert("Aprobado");
+				}
+				else if (nota == 6){
+					alert("Bien");
+				}
+
+				else if (nota <= 8){
+					alert("Notable");
+				}
+
+				else {
+					alert("Sobresaliente");
+				}
+
+				console.log("La nota es: " +nota)
+		}
+
+
+
+			//6) HACER UN MÉTODO QUE RECIBA UNA CADENA Y LA DEVUELVA AL REVÉS
+
+			function ejercicio6(){
+				//var cadena_in = cadena;
+				var cadena_in = document.getElementById("cade").value;
+
+				/*var cadena_array = cadena_in.split("");
+
+				var cadena_reves = cadena_array.reverse();
+
+				var cadena_out = cadena_reves.join("");
+
+				console.log(cadena_out);*/
+
+				console.log(cadena_in.split("").reverse().join(""));
+				alert(cadena_in.split("").reverse().join(""));
+
 			}
-
-
-
-
 
 
 			//7) HACER UN PROGRAMA QUE MUESTRE LA SECUENCIA 3, 6, 9, 12, 15 ...99
@@ -185,12 +225,13 @@
 
 			function basicos() {
 				/*ejercicio1("cocreta", "s");*/
-				ejercicio2("palabra", "a");
+				ejercicio1v2("cocreta", "a");
+				/*ejercicio2("palabra", "a");
 				ejercicio3();
-				/*ejercicio4();
-				ejercicio5(8);
-				/*ejercicio6();
-				ejercicio7();*/
+				ejercicio4();
+				ejercicio5(8);*/
+				//ejercicio6("hola");
+				/*ejercicio7();*/
 			}
 
 		</script>
@@ -231,6 +272,14 @@
 				<p>Introduce la nota:</p>
 				<input type="number" placeholder="Nota" id="nota">
 				<input type="button" value="Enviar" onclick="ejercicio5()">
+			</div>
+
+			<div class="row">
+				<h2>Ejercicio 6</h2>
+				<p>Método que reciba una cadena y la devuelva al <span style="font-style: italic;">verrés</span>:</p>
+				<p>Introduce una palabra:</p>
+				<input type="text" placeholder="Palabra" id="cade">
+				<input type="button" value="Enviar" onclick="ejercicio6()">
 			</div>
 		</div>
 	</div>
