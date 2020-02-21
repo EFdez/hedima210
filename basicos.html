@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Ejercicios Básicos</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicios Básicos</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- FONT
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 		<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -11,14 +11,11 @@
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/skeleton.css">
-
 		<script>
 			
 			window.onload = basicos;
 			//A función por ejercicio
-
 			//1) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARACTER Y DIGA SI ESE CARACTER PERTENECE A LA CADENA O NO
-
 			function ejercicio1(palabra, letra){
 				//si palabra contiene letra, devolver true
 				//si no, false
@@ -28,7 +25,6 @@
 				console.log(palabra, letra);
 				console.log(palabra.includes(letra));
 				var resultado = (palabra.includes(letra)) ;
-
 				if (resultado == true) {
 					alert("Sí la contiene")
 				}
@@ -36,43 +32,27 @@
 					alert("No la contiene")
 				}
 			}
-
 			function ejercicio1v2(palabra, letra){
-
-				var str = palabra;
-				var buscar = letra;
-
-				var resultado_num = str.indexOf(buscar);
 				var resultado = false;
-
-				console.log(resultado_num);
-
-				if (resultado_num != -1){
+				resultado = (palabra.indexOf(letra)!=-1);
+				//var resultado_num = palabra.indexOf(letra);
+				//console.log(resultado_num);
+				/*if (resultado_num != -1){
 					resultado = true;
 				}
-				else {
-					resultado = false;
-				}
-
-				console.log(resultado);
-
+				//console.log(resultado);*/
+				return resultado;
+				
 			}
-
 			//2) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARaCTER Y DIGA CUÁNTAS VECES APARECE ESE CARaCTER EN LA CADENA
-
 			function ejercicio2(palabra, caracter){
 				console.log(palabra.includes(caracter));
 				console.log(palabra.match(/a/g));
-
-
 			}
-
 			function ejercicio2bis(string, letra){
 				var string = document.getElementById("string").value;
 				var letra = document.getElementById("letra").value;
 				var coincide = 0;
-
-
 				for (var i = 0; i< (string.length); i++) {
 					console.log(string.charAt(i));
 					var letra_en_curso = string.charAt(i);
@@ -83,39 +63,28 @@
 					}
 					else {
 						console.log("No coincide.")
-					}	
+						}
 				}
 				console.log("La letra "+ letra +" aparece "+ coincide +" veces en la palabra " + string+ ". ")
 				alert("La letra "+ letra +" aparece "+ coincide +" veces en la palabra " + string+ ". ")
-
-
 			}
-
 			//3) HACER UN MÉTODO QUE DADO UN NÚMERO, DIGA SI ES PAR O NO
-
 			function ejercicio3(){
 				var i = 7;
-
 				if (i % 2 == 0){
 					alert("PAR")
 				}
-
 				else {
 					alert("IMPAR")
 				}
-
 			}
-
 			//4) HACER UN MÉTODO QUE LE PIDA AL USUARIO SU EDAD Y LE DIGA SI ES MAYOR DE EDAD O NO
-
 			function ejercicio4(edad){
-
 				//también se puede hacer mediante prompt
 				//var respuesta = window.prompt("Ingrese su eddad");
 				//como el prompt devuelve STRING se precisa de CASTING de OT.
 				//var edad = parseInt(respuesta);
 				var edad = document.getElementById("edad").value;
-
 				if (edad >= 18){
 					alert("Eres mayor de edad.")
 				}
@@ -123,13 +92,9 @@
 					alert("No eres mayor de edad.")
 				}
 			}
-
-
 			//5) HACER UN MÉTODO QUE RECIBA UNA NOTA DE 0 A 10 Y DIGA SI EQUIVALE A UN APROBADO, BIEN, NOTABLE, O SOBRESALIENTE
-
 			function ejercicio5(){
 				var nota = document.getElementById("nota").value;
-
 				if(nota < 0) {nota=0}
 				else if (nota > 10){nota = 10}
 				else{nota=nota}
@@ -137,49 +102,32 @@
 				if (nota < 5 ){
 					alert("Suspenso");
 				}
-
 				else if (nota == 5){
 					alert("Aprobado");
 				}
 				else if (nota == 6){
 					alert("Bien");
 				}
-
 				else if (nota <= 8){
 					alert("Notable");
 				}
-
 				else {
 					alert("Sobresaliente");
 				}
-
 				console.log("La nota es: " +nota)
 		}
-
-
-
 			//6) HACER UN MÉTODO QUE RECIBA UNA CADENA Y LA DEVUELVA AL REVÉS
-
 			function ejercicio6(){
 				//var cadena_in = cadena;
 				var cadena_in = document.getElementById("cade").value;
-
 				/*var cadena_array = cadena_in.split("");
-
 				var cadena_reves = cadena_array.reverse();
-
 				var cadena_out = cadena_reves.join("");
-
 				console.log(cadena_out);*/
-
 				console.log(cadena_in.split("").reverse().join(""));
 				alert(cadena_in.split("").reverse().join(""));
-
 			}
-
-
 			//7) HACER UN PROGRAMA QUE MUESTRE LA SECUENCIA 3, 6, 9, 12, 15 ...99
-
 			//WHILE string
 			/*function ejercicio7(){
 				var i = 0;
@@ -195,7 +143,6 @@
 				console.log("Último caracter: " + ultimo_caracter);
 				console.log("Sin el último caracter: " + resultado.substring(0,resultado.length-1));
 				}
-
 			//WHILE
 			/*function ejercicio7(){
 				var i = 0;
@@ -205,27 +152,24 @@
 				}
 				
 			}*/
-
 			//DO WHILE
 			function ejercicio7() {
 				var i = 0;
-
 				do {
 					i += 3;
 					console.log(i);
 				}
-				while (i != 99);	
+					while (i != 99);
 			}
-
 			/*function ejercicio7(){
 				for (var i = 3; i <=99; i += 3) {
 					console.log(i);
 				}
 			}*/
-
 			function basicos() {
 				/*ejercicio1("cocreta", "s");*/
-				ejercicio1v2("cocreta", "a");
+				var resultado = ejercicio1v2("cocreta", "a");
+				console.log(resultado);
 				/*ejercicio2("palabra", "a");
 				ejercicio3();
 				ejercicio4();
@@ -233,57 +177,51 @@
 				//ejercicio6("hola");
 				/*ejercicio7();*/
 			}
-
 		</script>
-</head>
-<body>
-	<div class="container">
-		
-		<div class="row">
-			<div class="ten column">
-				<h1>Ejercicios Básicos</h1>
-			</div>
-
+	</head>
+	<body>
+		<div class="container">
+			
 			<div class="row">
-				<h2>Ejercicio 1</h2>
-				<p>Comprobar si la palabra contiene un caracter:</p>
-				<input type="text" placeholder="Palabra" id="palabra">
-				<input type="text" placeholder="Caracter" id="caracter">
-				<input type="button" value="Enviar" onclick="ejercicio1(palabra, caracter)">
-			</div>
-
-			<div class="row">
-				<h2>Ejercicio 2</h2>
-				<p>Comprobar si la palabra contiene un caracter y que lo devuelva:</p>
-				<input type="text" placeholder="Palabra" id="string">
-				<input type="text" placeholder="Caracter" id="letra">
-				<input type="button" value="Enviar" onclick="ejercicio2bis(palabra, caracter)">
-			</div>
-
-			<div class="row">
-				<h2>Ejercicio 4</h2>
-				<p>Introduce tu edad:</p>
-				<input type="number" placeholder="Edad" id="edad">
-				<input type="button" value="Enviar" onclick="ejercicio4(edad)">
-			</div>
-
-			<div class="row">
-				<h2>Ejercicio 5</h2>
-				<p>Introduce la nota:</p>
-				<input type="number" placeholder="Nota" id="nota">
-				<input type="button" value="Enviar" onclick="ejercicio5()">
-			</div>
-
-			<div class="row">
-				<h2>Ejercicio 6</h2>
-				<p>Método que reciba una cadena y la devuelva al <span style="font-style: italic;">verrés</span>:</p>
-				<p>Introduce una palabra:</p>
-				<input type="text" placeholder="Palabra" id="cade">
-				<input type="button" value="Enviar" onclick="ejercicio6()">
+				<div class="ten column">
+					<h1>Ejercicios Básicos</h1>
+				</div>
+				<div class="row">
+					<h2>Ejercicio 1</h2>
+					<p>Comprobar si la palabra contiene un caracter:</p>
+					<input type="text" placeholder="Palabra" id="palabra">
+					<input type="text" placeholder="Caracter" id="caracter">
+					<input type="button" value="Enviar" onclick="ejercicio1(palabra, caracter)">
+				</div>
+				<div class="row">
+					<h2>Ejercicio 2</h2>
+					<p>Comprobar si la palabra contiene un caracter y que lo devuelva:</p>
+					<input type="text" placeholder="Palabra" id="string">
+					<input type="text" placeholder="Caracter" id="letra">
+					<input type="button" value="Enviar" onclick="ejercicio2bis(palabra, caracter)">
+				</div>
+				<div class="row">
+					<h2>Ejercicio 4</h2>
+					<p>Introduce tu edad:</p>
+					<input type="number" placeholder="Edad" id="edad">
+					<input type="button" value="Enviar" onclick="ejercicio4(edad)">
+				</div>
+				<div class="row">
+					<h2>Ejercicio 5</h2>
+					<p>Introduce la nota:</p>
+					<input type="number" placeholder="Nota" id="nota">
+					<input type="button" value="Enviar" onclick="ejercicio5()">
+				</div>
+				<div class="row">
+					<h2>Ejercicio 6</h2>
+					<p>Método que reciba una cadena y la devuelva al <span style="font-style: italic;">verrés</span>:</p>
+					<p>Introduce una palabra:</p>
+					<input type="text" placeholder="Palabra" id="cade">
+					<input type="button" value="Enviar" onclick="ejercicio6()">
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	
-</body>
+		
+		
+	</body>
 </html>
