@@ -14,6 +14,7 @@
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/dni.css">
     <script src="dni.js"></script>
 </head>
 
@@ -22,20 +23,25 @@
         <div class="row">
             <div class="ten columns">
                 <h1>Cálculo de la letra del DNI:</h1>
+            </div> <!-- cierre .ten -->
+        </div> <!-- cierre .row -->
+
+        <div class="row">
+        	<div class="five columns"></div>
+
                 <form action="">
                     <fieldset>
                         <legend>Introduce el número del dni:</legend>
                         <input type="text" maxlength="9" value="12345678" id="numeroDni">
-                        <input type="button" value="Enviar" onclick="añadirLetraDni()">
+                        <input type="button" value="Enviar" onclick="anadirLetraDni()">
                     </fieldset>
                     <div>
                     <p id="resultadoLetra"></p>
-
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
+            </div><!-- cierre .five -->
+		</div> <!-- cierre .row -->
+    </div> <!-- cierre .container -->
 </body>
 
 </html>

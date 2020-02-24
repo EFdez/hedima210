@@ -11,11 +11,13 @@
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/skeleton.css">
-		<script>
+
+<script>
 			
 			window.onload = basicos;
-			//A función por ejercicio
-			//1) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARACTER Y DIGA SI ESE CARACTER PERTENECE A LA CADENA O NO
+//A función por ejercicio
+
+//1) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARACTER Y DIGA SI ESE CARACTER PERTENECE A LA CADENA O NO
 			function ejercicio1(palabra, letra){
 				//si palabra contiene letra, devolver true
 				//si no, false
@@ -42,9 +44,9 @@
 				}
 				//console.log(resultado);*/
 				return resultado;
-				
 			}
-			//2) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARaCTER Y DIGA CUÁNTAS VECES APARECE ESE CARaCTER EN LA CADENA
+
+//2) HACER UN MÉTODO QUE RECIBA UNA CADENA Y UN CARaCTER Y DIGA CUÁNTAS VECES APARECE ESE CARaCTER EN LA CADENA
 			function ejercicio2(palabra, caracter){
 				console.log(palabra.includes(caracter));
 				console.log(palabra.match(/a/g));
@@ -68,7 +70,8 @@
 				console.log("La letra "+ letra +" aparece "+ coincide +" veces en la palabra " + string+ ". ")
 				alert("La letra "+ letra +" aparece "+ coincide +" veces en la palabra " + string+ ". ")
 			}
-			//3) HACER UN MÉTODO QUE DADO UN NÚMERO, DIGA SI ES PAR O NO
+
+//3) HACER UN MÉTODO QUE DADO UN NÚMERO, DIGA SI ES PAR O NO
 			function ejercicio3(){
 				var i = 7;
 				if (i % 2 == 0){
@@ -78,7 +81,8 @@
 					alert("IMPAR")
 				}
 			}
-			//4) HACER UN MÉTODO QUE LE PIDA AL USUARIO SU EDAD Y LE DIGA SI ES MAYOR DE EDAD O NO
+
+//4) HACER UN MÉTODO QUE LE PIDA AL USUARIO SU EDAD Y LE DIGA SI ES MAYOR DE EDAD O NO
 			function ejercicio4(edad){
 				//también se puede hacer mediante prompt
 				//var respuesta = window.prompt("Ingrese su eddad");
@@ -92,7 +96,8 @@
 					alert("No eres mayor de edad.")
 				}
 			}
-			//5) HACER UN MÉTODO QUE RECIBA UNA NOTA DE 0 A 10 Y DIGA SI EQUIVALE A UN APROBADO, BIEN, NOTABLE, O SOBRESALIENTE
+
+//5) HACER UN MÉTODO QUE RECIBA UNA NOTA DE 0 A 10 Y DIGA SI EQUIVALE A UN APROBADO, BIEN, NOTABLE, O SOBRESALIENTE
 			function ejercicio5(){
 				var nota = document.getElementById("nota").value;
 				if(nota < 0) {nota=0}
@@ -116,7 +121,8 @@
 				}
 				console.log("La nota es: " +nota)
 		}
-			//6) HACER UN MÉTODO QUE RECIBA UNA CADENA Y LA DEVUELVA AL REVÉS
+
+//6) HACER UN MÉTODO QUE RECIBA UNA CADENA Y LA DEVUELVA AL REVÉS
 			function ejercicio6(){
 				//var cadena_in = cadena;
 				var cadena_in = document.getElementById("cade").value;
@@ -127,7 +133,8 @@
 				console.log(cadena_in.split("").reverse().join(""));
 				alert(cadena_in.split("").reverse().join(""));
 			}
-			//7) HACER UN PROGRAMA QUE MUESTRE LA SECUENCIA 3, 6, 9, 12, 15 ...99
+
+//7) HACER UN PROGRAMA QUE MUESTRE LA SECUENCIA 3, 6, 9, 12, 15 ...99
 			//WHILE string
 			/*function ejercicio7(){
 				var i = 0;
@@ -144,7 +151,7 @@
 				console.log("Sin el último caracter: " + resultado.substring(0,resultado.length-1));
 				}
 			//WHILE
-			/*function ejercicio7(){
+			function ejercicio7(){
 				var i = 0;
 				while(i < 99) {
 					i += 3;
@@ -173,11 +180,12 @@
 				/*ejercicio2("palabra", "a");
 				ejercicio3();
 				ejercicio4();
-				ejercicio5(8);*/
+				ejercicio5(8);
 				//ejercicio6("hola");
-				/*ejercicio7();*/
+				ejercicio7();*/
 			}
-		</script>
+</script>
+
 	</head>
 	<body>
 		<div class="container">

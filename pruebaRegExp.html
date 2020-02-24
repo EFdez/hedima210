@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Prueba Reg Exp</title>
+		<script>
+			window.onload = pruebaRegExp;
+			var re_dni = /^\d{8}$/;
+			 var re_nie = /^[X-Z]{1}\d{7}$/i;
+			 var re_ok = /^[X-Z]?\d{7,8}$/i;
+
+		//Cotejar num con REGEXP mediante test
+		function pruebaRegExp(){
+		var dni_prueba = "04849628";
+		var formato_dni = new RegExp(re_ok);
+		var num_ok = formato_dni.test(dni_prueba);
+		if (num_ok) {
+		console.log("DNI CORRECTO");
+		} else {console.log("DNI INCORRECTO")}
+		}
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
