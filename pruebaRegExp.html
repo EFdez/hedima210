@@ -8,11 +8,11 @@
 			var re_dni = /^\d{8}$/;
 			 var re_nie = /^[X-Z]{1}\d{7}$/i;
 			 var re_ok = /^[X-Z]?\d{7,8}$/i;
-
+			 var re_ok_or= ((/^\d{8}$/) | (/^[X-Z]{1}\d{7}$/i));
 		//Cotejar num con REGEXP mediante test
 		function pruebaRegExp(){
-		var dni_prueba = "04849628";
-		var formato_dni = new RegExp(re_ok);
+		var dni_prueba = "z4849628";
+		var formato_dni = new RegExp(re_ok_or);
 		var num_ok = formato_dni.test(dni_prueba);
 		if (num_ok) {
 		console.log("DNI CORRECTO");

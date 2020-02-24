@@ -6,6 +6,8 @@
         var num = num_introducido.toUpperCase();
         //var re_nie = /^[X-Z]{1}\d{7}$/i;
         //var re_dni = /^\d{8}$/;
+
+        //PROBLEMA:Se pueden meter 7 digitos y te devuelve letra. ERROR.
         var re_ok = /^[X-Z]?\d{7,8}$/i;
         const letras = "TRWAGMYFPDXBNJZSQVHLCKE";       
         var inicio_cadena = num.charAt(0);
@@ -42,10 +44,10 @@
         //Comprobar si hay letra inicial
         function comprobarNumero(){
         if (!isNaN(inicio_cadena)){
-          console.log("No hay letra")
+          console.log("DNI")
         }
         else {
-          console.log("DNI extranjero")
+          console.log("NIE")
           convertirLetra(inicio_cadena);
         }
       }
