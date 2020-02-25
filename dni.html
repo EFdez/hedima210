@@ -9,13 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FONT
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt&display=swap" rel="stylesheet">
     <!-- CSS
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/dni.css">
     <script src="dni.js"></script>
+  
 </head>
 
 <body>
@@ -25,52 +26,52 @@
                 <h1>Cálculo de la letra del DNI:</h1>
             </div> <!-- cierre .eleven -->
         </div> <!-- cierre .row -->
-
         <div class="row">
-        	<div class="five columns">
+            <div class="five columns">
                 <form action="">
                     <fieldset>
                         <legend>Introduce el número del dni:</legend>
                         <input type="text" maxlength="9" value="12345678" id="numeroDni">
+                        <legend>Introduce tu nombre:</legend>
+                        <input type="text" value="Nombre" id="inpNom">
+                        <legend>Introduce tu primer apellido:</legend>
+                        <input type="text" value="Primer Apellido" id="inpAp1">
+                        <legend>Introduce tu primer apellido:</legend>
+                        <input type="text" value="Segundo Apellido" id="inpAp2">
                         <input type="button" value="Enviar" onclick="anadirLetraDni()">
                     </fieldset>
                     <div>
-                    <p id="resultadoLetra"></p>
+                        <p id="resultadoLetra"></p>
                     </div>
                 </form>
-            </div><!-- cierre .five -->
-
-            <div class="seven columns">
-            	<div class="box">
-            		<div class="row">
-            		<div id="carnet" class="ten columns">
-            			<div class="row">
-            				<div id="titulo" class="eight columns"></div>
-            			</div>
-            			<div class="container">
-            				<div class="row">
-            					<div class="two columns" id="lateralizq">
-            						<div class="row">
-            						<div class="one" id="chip"></div>
-            					</div>
-            					<div class="row">
-            						<div class="two columns" id="espana">ESPAÑA</div>
-            					</div>
-            					<div class="row">
-            						<div class="three columns" id="numcarnet"></div>
-            					</div>
-            				</div>
-            				</div>
-
-            				</div>
-            			</div>
-            			</div>
-            		</div>
-            	</div>
+            </div><!-- cierre .four -->
+            <div class="six columns">
+                <div id="carnet">
+                    <div id="titulo">DOCUMENTO NACIONAL DE IDENTIDAD</div>
+                    <div id="firma">FIRMA</div>
+                    <div id="ap1">PRIMER APELLIDO</div>
+                    <div id="ap1_input">xxx</div>
+                    <div id="ap2">SEGUNDO APELLIDO</div>
+                    <div id="ap2_input">xxx</div>
+                    <div id="nom">NOMBRE</div>
+                    <div id="nom_input">xxx</div>
+                    <div id="foto"></div>
+                    <div class="container">
+                        <div id="lateralizq">
+                            <div id="chip"></div>
+                            <div id="espana">ESPAÑA</div>
+                            <div id="chip"></div>
+                            <div id="numcarnet"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-		</div> <!-- cierre .row -->
+        </div> <!-- cierre .row -->
     </div> <!-- cierre .container -->
-
 </body>
 
 </html>
+
+
+
+
