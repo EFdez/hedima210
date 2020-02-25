@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<meta charset="UTF-8">
+		<title>Ejercicio Parejas</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- FONT
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+		<!-- CSS
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skeleton.css">
+		<script>
+			
+		window.onload = iniciarTablero;
+		var primera_vez = true;
+		var td_tocado;
+		var n_aciertos = 0;
+		var contador = 0;
+		var max_aciertos;
+
+		function ocultarImagenes (){
+		var array_imagenes = document.getElementsByTagName("img");
+		console.log(array_imagenes.length);
+		
+		max_aciertos = array_imagenes.length/2;
+		
+		var imagen_actual;
+		
+		//ocultar imágenes
+		for (let index = 0; index < array_imagenes.length; index++) {
+		imagen_actual = array_imagenes[index];
+		console.log("ruta " + imagen_actual.src);
+		imagen_actual.style.visibility="hidden";
+		}
+		}
+
+		function programarTds (){
+		//programar el listener de los tds
+		var array_tds = document.getElementsByTagName("td");
+		var td_actual;//variable auxiliar
+		for (let index = 0; index < array_tds.length; index++) {
+		td_actual = array_tds[index];
+		td_actual.onclick = descubrir;
+			}
+		}
+
+		function iniciarTablero (){
+		ocultarImagenes();
+		programarTds();
+		}
+		
+		function tapar (imagen1, imagen2){
+		imagen1.style.visibility = "hidden";
+		imagen2.style.visibility = "hidden";
+		}
+
+		function descubrir(){
+		this.firstChild.style.visibility = "visible";
+		contador++;
+		console.log(contador);
+		document.getElementById('contador').innerHTML = contador;
+		
+		if (primera_vez){
+			console.log ("ha tocado la primera vez");
+			primera_vez = false;
+			td_tocado = this;
+			} 
+	
+			else if (td_tocado != this){
+			console.log ("ha tocado la segunda vez");
+			primera_vez=true;
+				//si las imagenes son iguales
+				if (this.firstChild.src==td_tocado.firstChild.src){
+				console.log ("ACIEEERTO!");
+				n_aciertos = n_aciertos + 1;
+					if (n_aciertos == max_aciertos){
+						console.log("Sacabó");
+						setTimeout(iniciarTablero, 1000);
+						contador = 0;
+					}
+				} else {
+					console.log ("son distintas");
+					setTimeout(tapar, 1000, this.firstChild, td_tocado.firstChild);
+						}
+			} else {
+				console.log("NO CLIQUES MÁS YA EL MISMO")
+			}
+		}
+		
+	
+
+		//CASOS ESPECIALES
+
+		// Clic repetido en el mismo td
+
+
+		
+		</script>
+		<style>
+			table {
+				margin: 0 auto;
+				justify-content: center;
+				vertical-align: middle;
+				text-align: center;
+			}
+			td, tr {
+				text-align: center;
+			}
+			td {
+				border: 2px solid grey;
+				cursor: pointer;
+			}
+			img {
+				width: 150px;
+				height: 150px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Una tabla, tr, td y dentro td imágenes
+		De dos por dos -->
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h1>Encuentra las parejas</h1>
+					<p>Pincha sobre las imágenes para encontrar las parejas.</p>
+					<p>Contador: </p><span id="contador">0</span>
+					</div> <!-- Cierre .eleven -->
+					</div> <!--Cierre .row -->
+					<div class="row">
+						<div class="eleven columns">
+							<table>
+								<tr>
+									<td class="tarjeta"><img src="img/glitter.jpg" alt="Niña glitter"></td>
+									<td class="tarjeta"><img src="img/cumpleperro.jpg" alt="Perro cumpleañero"></td>
+								</tr>
+								<tr>
+									<td class="tarjeta"><img src="img/glitter.jpg" alt="Niña glitter"></td>
+									<td class="tarjeta"><img src="img/cumpleperro.jpg" alt="Perro cumpleañero"></td>
+								</tr>
+							</table>
+							</div> <!--Cierre .eight -->
+							
+						</div>
+						</div><!--Cierre .container -->
+						
+					</body>
+				</html>
