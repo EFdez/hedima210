@@ -1,148 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta charset="UTF-8">
-        <title>Ejercicio Bingo</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- FONT
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Ejercicio Bingo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-        <!-- CSS
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- CSS
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/skeleton.css">
-        <script>
-            /*dibujarCarton()
-            rellenarCarton()
-            dibujarTapados()
-
-            Bucle:
-            sacarBola()
-            comprobar()*/
-
-/*#CFD4C5
-  #EECFD4
-  #EFB9CB
-  #E6ADEC
-  #C186E8*/
-
-            window.onload = funciones;
-
-            function funciones(){
-                dibujarCarton();
-                rellenarCarton();
-            };
-
-            const MAX_FILAS = 3;
-            const MAX_COLUMNAS = 9;
-            var num_carton = [];
-
-    //Generar número aleatorio [1,99]
-
-    function generarNumAleatorio(){
-
-        let num_aleatorio;
-
-        num_aleatorio = Math.floor(Math.random() * 90) + 1;
-
-        return num_aleatorio;
-
-
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <script src="bingo.js"></script>
+    <style type="text/css">
+    table {
+        border: 1px solid black;
+        width: 100%;
+        border-top: 1px solid black;
+        background-color: #E6ADEC;
+        vertical-align: middle;
+        table-layout: fixed;
+        height: 200px;
     }
 
-
-    //Rellenar el cartón con un array de números [1, 99]
-    //Obtener todos los tds, recorrerlos y añadir un número
-        function rellenarCarton(){
-        let array_td = document.getElementsByTagName("TD");
-        console.log(array_td);
-        let num_aleatorio;
-        var i = 0;
-            
-
-            do { 
-               num_aleatorio = generarNumAleatorio();
-
-                if (num_carton.indexOf(num_aleatorio) == -1){
-
-                    console.log("Número válido");
-                    array_td[i].innerHTML = num_aleatorio; //pintar número
-                    num_carton.push(num_aleatorio);
-                    i++; //suma del index
-                }
-
-            } while (num_carton.length < array_td.length);
-
-              console.log(num_carton);
-
+    tr:nth-child(even) td:nth-child(odd),
+    tr:nth-child(odd) td:nth-child(even) {
+        background-color: #C287E8;
     }
 
-
-
-        //GENERAR 3TR cada uno con 9TD
-        function dibujarCarton() {
-        let fila;
-        let columna;
-        let tabla = document.getElementById("hook_tabla");
-        let numeros_bingo = []
-
-        for (let i = 0; i < MAX_FILAS; i++) {
-            //console.log("TR creada.");
-            fila = document.createElement("tr");
-            
-            for (let b = 0; b < MAX_COLUMNAS; b++) {
-                //console.log("TD creada.");
-                columna = document.createElement("td");
-                fila.appendChild(columna);
-            }
-            tabla.appendChild(fila);
-        }
+    td {
+        border: 1px solid black;
+        text-align: center;
     }
+    </style>
+</head>
 
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <h1>Bingo</h1>
+            </div>
+        </div><!-- Cierre .row -->
+        <div class="row">
+            <div id="contenedor" class="twelve columns u-full-width">
+                <table id="hook_tabla">
+                </table>
+            </div> <!-- Cierre .ten -->
+        </div><!-- Cierre .row -->
+    </div>
+    <!--Cierre .container -->
+</body>
 
-        </script>
-
-        <style type="text/css">
-            
-            table {
-                border: 1px solid black;
-                width: 100%;
-                border-top: 1px solid black;
-                background-color: #E6ADEC;
-                vertical-align: middle;
-                table-layout: fixed;
-                height: 200px;
-            }
-            tr:nth-child(even) td:nth-child(odd),
-            tr:nth-child(odd) td:nth-child(even){
-                background-color: #C287E8;
-            }
-            td{
-                border: 1px solid black;
-                text-align: center;
-            }
-
-        </style>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="twelve columns">
-                    <h1>Bingo</h1>
-                </div>
-            </div><!-- Cierre .row -->
-
-            <div class="row">
-                <div class="twelve columns u-full-width">
-                    <table id="hook_tabla">
-                        
-                    </table>
-                </div> <!-- Cierre .ten -->
-            </div><!-- Cierre .row -->
-        </div> <!--Cierre .container -->        
-        
-    </body>
-
-    </html>
+</html>
