@@ -12,51 +12,44 @@ function funciones() {
     dibujarTapados();
     cartonLuisa();
     array_no = numerosFueraCarton(num_carton);
-    console.log(array_no);
+    console.log("N arra: " + array_no);
     //deMenorAMayor();
 };
 const MAX_FILAS = 3;
 const MAX_COLUMNAS = 9;
 var num_carton = [];
 
-function deMenorAMayor(a, b){
-        let numero_devuelto;
-        if (a>b){
-            numero_devuelto = 1;
-        }
-        else if (b>a){
-            numero_devuelto = -1;
-        }
-        else {
-            numero_devuelto=0;
-        } 
-        return numero_devuelto;
+function deMenorAMayor(a, b) {
+    let numero_devuelto;
+    if (a > b) {
+        numero_devuelto = 1;
+    } else if (b > a) {
+        numero_devuelto = -1;
+    } else {
+        numero_devuelto = 0;
+    }
+    return numero_devuelto;
 
 
 }
 
-
 //Hacer una función que devuelva un array 
 //con los números que no forman parte del cartón
-
 function numerosFueraCarton(numeros_carton) {
 
     let array_diferencia = [];
 
+    //Con filtro, sacando la diferencia entre la comparación de dos arrays
     //Sacar array [1,90]
-  /*let total_numeros = [];
-    for (var i = 1; i <= 90; i++) {
-         total_numeros[i] = i;
-     }
-     console.log("Numeros hasta el 90: " + total_numeros)
-     //Números que está en el cartón
-     console.log("Numeros del carton: " + num_carton);
-
-     array_diferencia = total_numeros.filter(x => !num_carton.includes(x));
-     return array_diferencia;*/
+    /*let total_numeros = [];
+      for (var i = 1; i <= 90; i++) {
+           total_numeros[i] = i;}
+       console.log("Numeros hasta el 90: " + total_numeros)
+        //Filtrar dif entre los arrays
+       array_diferencia = total_numeros.filter(x => !num_carton.includes(x));
+       return array_diferencia;*/
 
     // Recorrer array total en cada vuelta, si diferente a num_carton almacenar en nuevo array
-
     for (var i = 1; i <= 90; i++) {
         if (numeros_carton.indexOf(i) == -1) {
             array_diferencia.push(i);
@@ -65,7 +58,7 @@ function numerosFueraCarton(numeros_carton) {
     return array_diferencia;
 }
 
-//Generar número aleatorio [1,99]
+//Generar número aleatorio [1,90]
 function generarNumAleatorio() {
     let num_aleatorio;
     num_aleatorio = Math.floor(Math.random() * 90) + 1;
@@ -74,25 +67,21 @@ function generarNumAleatorio() {
 
 //Tapar varios números random
 function dibujarTapados() {
-
-
-    /*let aleatorio_tapar = [];
-    let num_tapar = [];
-
+    var aleatorio_tapar= [];
     //Generar array números aleatorios
     for (var i = 0; i < 5; i++) {
-        aleatorio_tapar[i] = Math.floor(Math.random() * 27 + 1);
+        aleatorio_tapar[i] = Math.floor(Math.random() * 5 + 1);
     }
-    console.log(aleatorio_tapar);
-
+    console.log("array aleatorio posicion tapar: " +aleatorio_tapar);
+    
 
     //Convertir esos números random a posiciones
-     for (var i = 0; i < aleatorio_tapar.length; i++) {
-         let posicion = aleatorio_tapar[i];
-         console.log("Posición: " + posicion);
-         if(num_carton.indexOf(posicion)){num_carton.splice(posicion, 0, "nada");}
-         
-     }*/
+    for (var i = 0; i < aleatorio_tapar.length; i++) {
+        let posicion = aleatorio_tapar[i];
+        console.log("Posición: " + posicion);
+      // if (num_carton.indexOf(posicion)) { num_carton.splice(posicion, 0, "nada"); }
+       num_carton.splice(posicion, 0 , "nada");
+    }
 }
 
 //Ej Luisa:
@@ -144,7 +133,7 @@ function cartonLuisa() {
 
     }
 }
-//Rellenar el cartón con un array de números [1, 99]
+//Rellenar el cartón con un array de números [1, 90]
 //Obtener todos los tds, recorrerlos y añadir un número
 function rellenarCarton() {
     let array_td = document.getElementsByTagName("TD");
@@ -161,12 +150,15 @@ function rellenarCarton() {
             i++; //suma del index
         }
     } while (num_carton.length < array_td.length);
-        console.log(num_carton);
-        num_carton.sort(deMenorAMayor);
-        for (var i = 0; i < num_carton.length; i++) 
-        {
-            array_td[i].innerHTML = num_carton[i];
-        }
+ 
+ //AQUÍ TIENE QUE IR LA FUNCIÓN DE BORRAR
+       dibujarTapados();
+    
+    console.log(num_carton);
+    num_carton.sort(deMenorAMayor);
+    for (var i = 0; i < num_carton.length; i++) {
+        array_td[i].innerHTML = num_carton[i];
+    }
 
 }
 
