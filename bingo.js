@@ -4,32 +4,28 @@ dibujarTapados()
 Bucle:
 sacarBola()
 comprobar()*/
-window.onload = funciones;
+window.onload = dibujarCarton;
 
 function funciones() {
-    dibujarCarton();
+    /*dibujarCarton();
     rellenarCarton();
     dibujarTapados();
     cartonLuisa();
-
-    /*let array_no = numerosFueraCarton(num_carton);
+    let array_no = numerosFueraCarton(num_carton);
     console.log("N arra: " + array_no);
-    //deMenorAMayor();
+    deMenorAMayor();
     let num_mayor = devolverMayor();
     console.log("Número mayor: " + num_mayor);
-
     let num_menor = devolverMenor();
-    console.log("Número menor: " + num_menor);*/
-    //let resultado = bolaBomboArray();
-    //console.log(resultado);
-
+    console.log("Número menor: " + num_menor);
+    let resultado = bolaBomboArray();
+    console.log(resultado);
     sacarBola();
-    //let bombo = bolaBomboArray();
-    //console.log("Numeros del bombo: " + bombo);
-
-    comparaBomboCartón(num_carton);
-
+    let bombo = bolaBomboArray();
+    console.log("Numeros del bombo: " + bombo);
+    comparaBomboCartón(num_carton);*/
 };
+
 const MAX_FILAS = 3;
 const MAX_COLUMNAS = 9;
 var num_carton = [];
@@ -47,7 +43,6 @@ function deMenorAMayor(a, b) {
         numero_devuelto = 0;
     }
     return numero_devuelto;
-
 }
 
 //Directamente
@@ -63,7 +58,6 @@ function deMayoraMenor(a, b) {
         numero_devuelto = 0;
     }*/
     return numero_devuelto;
-
 }
 
 //Hacer una función que devuelva un array 
@@ -98,25 +92,6 @@ function generarNumAleatorio() {
     return num_aleatorio;
 }
 
-//Tapar varios números random
-function dibujarTapados() {
-    /* var aleatorio_tapar= [];
-     //Generar array números aleatorios
-     for (var i = 0; i < 5; i++) {
-         aleatorio_tapar[i] = Math.floor(Math.random() * 5 + 1);
-     }
-     console.log("array aleatorio posicion tapar: " +aleatorio_tapar);
-     
-
-     //Convertir esos números random a posiciones
-     for (var i = 0; i < aleatorio_tapar.length; i++) {
-         let posicion = aleatorio_tapar[i];
-         console.log("Posición: " + posicion);
-       // if (num_carton.indexOf(posicion)) { num_carton.splice(posicion, 0, "nada"); }
-        num_carton.push(posicion, 0 , "nada");
-     }*/
-}
-
 //Ej Luisa:
 //Ver si el array tiene el nº 5 y el nº 33
 //Más impares que pares
@@ -141,6 +116,7 @@ function mayoriaImpar() {
     console.log("Hay " + impares + " números impares en este cartón");
     return mas_impar;
 }
+
 //Que muestre mensaje en página si es así
 function cartonLuisa() {
     let contenedor_mensaje = document.getElementById("contenedor");
@@ -168,7 +144,6 @@ function cartonLuisa() {
 }
 
 //DIVIDIR FUNCIONES = REFACTORIZAR
-
 function generarNumerosCarton() {
     var lista_numeros = [];
     var index = 0;
@@ -186,30 +161,30 @@ function generarNumerosCarton() {
 }
 
 function ordenarNumerosCarton(numeros_carton) {
-    numeros_carton.sort(deMenorAMayor); //orden total
+    num_carton.sort(deMenorAMayor); //orden total
     //numeros_carton.sort();//orden natural
 }
 
 function dibujarNumerosCarton(numeros_carton) {
     let array_tds = document.getElementsByTagName("td");
     for (let index = 0; index < array_tds.length; index++) {
-        array_tds[index].innerHTML = numeros_carton[index];
+        array_tds[index].innerHTML = num_carton[index];
     }
 }
 
 function rellenarCarton() {
 
     let numero_aleatorio;
-    numeros_carton = generarNumerosCarton();
-    // ordenarNumerosCarton(numeros_carton);
-    dibujarNumerosCarton(numeros_carton);
+    num_carton = generarNumerosCarton();
+    ordenarNumerosCarton(num_carton);
+    dibujarNumerosCarton(num_carton);
     bomboArray();
+    jugar();
 
     /* comprobarCartonLuisa (numeros_carton);
      var array_no_estan = obtenerNumerosQueNoEstan (numeros_carton);
      console.log (array_no_estan);
      console.log ("longi no están " + array_no_estan.length);*/
-
 }
 
 //GENERAR 3TR cada uno con 9TD
@@ -229,6 +204,7 @@ function dibujarCarton() {
         }
         tabla.appendChild(fila);
     }
+    rellenarCarton();
 }
 
 //está mal, no uso parámetro
@@ -253,21 +229,19 @@ function devolverMayor(array_numeros) {
     return num_mayor[0];
 }
 
-function jugar() {
-    //sacarbola
-
-    sacarBola(bombo);
-    //comprobarbola
-}
-
 function sacarBola(num){
-
     let bola_sacada;
     bola_sacada =  bombo[pos_bombo];
-    document.getElementById.("bola").innerHTML = bombo[pos_bombo];
+    console.log(bola_sacada);
+    document.getElementById("bola").innerHTML = bola_sacada;
     pos_bombo++;
     return bola_sacada;
+}
 
+function jugar() {
+    //sacarbola
+    let bola_sacada = sacarBola(bombo);
+    //comprobarbola
 }
 
 function comprobarBola(bola, num_carton){
@@ -291,15 +265,14 @@ function bomboArray() {
     //Shuffle el array cuan lista de spotify
     console.log(bombo);
     shuffle(bombo);
-    console.log(bombo);
     console.log("Bombo barajado");
+    console.log(bombo);
 }
 
 /*function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
   return array;
 }*/
-
 function shuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
@@ -311,8 +284,5 @@ function shuffle(a) {
     return a;
 }
 
-
-
 function pintarBola(bombo) {
-
 }
