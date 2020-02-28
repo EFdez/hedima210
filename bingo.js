@@ -11,14 +11,32 @@ function funciones() {
     rellenarCarton();
     dibujarTapados();
     cartonLuisa();
-    array_no = numerosFueraCarton(num_carton);
+
+    /*let array_no = numerosFueraCarton(num_carton);
     console.log("N arra: " + array_no);
     //deMenorAMayor();
+    let num_mayor = devolverMayor();
+    console.log("Número mayor: " + num_mayor);
+
+    let num_menor = devolverMenor();
+    console.log("Número menor: " + num_menor);*/
+    //let resultado = bolaBomboArray();
+    //console.log(resultado);
+
+    sacarBola();
+    //let bombo = bolaBomboArray();
+    //console.log("Numeros del bombo: " + bombo);
+
+    comparaBomboCartón(num_carton);
+
 };
 const MAX_FILAS = 3;
 const MAX_COLUMNAS = 9;
 var num_carton = [];
+var bombo = [];//todas las bolas
+var pos_bombo = 0;//bola por la que voy
 
+//Haciéndolo nosotros
 function deMenorAMayor(a, b) {
     let numero_devuelto;
     if (a > b) {
@@ -30,6 +48,21 @@ function deMenorAMayor(a, b) {
     }
     return numero_devuelto;
 
+}
+
+//Directamente
+function deMayoraMenor(a, b) {
+    let numero_devuelto;
+
+    numero_devuelto = b - a;
+    /*if (a > b) {
+        numero_devuelto = 1;
+    } else if (b > a) {
+        numero_devuelto = -1;
+    } else {
+        numero_devuelto = 0;
+    }*/
+    return numero_devuelto;
 
 }
 
@@ -67,21 +100,21 @@ function generarNumAleatorio() {
 
 //Tapar varios números random
 function dibujarTapados() {
-    var aleatorio_tapar= [];
-    //Generar array números aleatorios
-    for (var i = 0; i < 5; i++) {
-        aleatorio_tapar[i] = Math.floor(Math.random() * 5 + 1);
-    }
-    console.log("array aleatorio posicion tapar: " +aleatorio_tapar);
-    
+    /* var aleatorio_tapar= [];
+     //Generar array números aleatorios
+     for (var i = 0; i < 5; i++) {
+         aleatorio_tapar[i] = Math.floor(Math.random() * 5 + 1);
+     }
+     console.log("array aleatorio posicion tapar: " +aleatorio_tapar);
+     
 
-    //Convertir esos números random a posiciones
-    for (var i = 0; i < aleatorio_tapar.length; i++) {
-        let posicion = aleatorio_tapar[i];
-        console.log("Posición: " + posicion);
-      // if (num_carton.indexOf(posicion)) { num_carton.splice(posicion, 0, "nada"); }
-       num_carton.splice(posicion, 0 , "nada");
-    }
+     //Convertir esos números random a posiciones
+     for (var i = 0; i < aleatorio_tapar.length; i++) {
+         let posicion = aleatorio_tapar[i];
+         console.log("Posición: " + posicion);
+       // if (num_carton.indexOf(posicion)) { num_carton.splice(posicion, 0, "nada"); }
+        num_carton.push(posicion, 0 , "nada");
+     }*/
 }
 
 //Ej Luisa:
@@ -133,32 +166,49 @@ function cartonLuisa() {
 
     }
 }
-//Rellenar el cartón con un array de números [1, 90]
-//Obtener todos los tds, recorrerlos y añadir un número
-function rellenarCarton() {
-    let array_td = document.getElementsByTagName("TD");
-    console.log(array_td);
-    let num_aleatorio;
-    var i = 0;
 
+//DIVIDIR FUNCIONES = REFACTORIZAR
+
+function generarNumerosCarton() {
+    var lista_numeros = [];
+    var index = 0;
     do {
-        num_aleatorio = generarNumAleatorio();
-        if (num_carton.indexOf(num_aleatorio) == -1) {
-            console.log("Número válido");
-            //array_td[i].innerHTML = num_aleatorio; //pintar número
-            num_carton.push(num_aleatorio);
-            i++; //suma del index
+        numero_aleatorio = generarNumAleatorio();
+        //comprobar que numero_aleatorio NO esté en numeros_carton
+        if (lista_numeros.indexOf(numero_aleatorio) == -1) //no es repe
+        {
+            console.log("numero VÁLIDO");
+            lista_numeros.push(numero_aleatorio);
+            index++;
         }
-    } while (num_carton.length < array_td.length);
- 
- //AQUÍ TIENE QUE IR LA FUNCIÓN DE BORRAR
-       dibujarTapados();
-    
-    console.log(num_carton);
-    num_carton.sort(deMenorAMayor);
-    for (var i = 0; i < num_carton.length; i++) {
-        array_td[i].innerHTML = num_carton[i];
+    } while (lista_numeros.length < (MAX_COLUMNAS * MAX_FILAS));
+    return lista_numeros;
+}
+
+function ordenarNumerosCarton(numeros_carton) {
+    numeros_carton.sort(deMenorAMayor); //orden total
+    //numeros_carton.sort();//orden natural
+}
+
+function dibujarNumerosCarton(numeros_carton) {
+    let array_tds = document.getElementsByTagName("td");
+    for (let index = 0; index < array_tds.length; index++) {
+        array_tds[index].innerHTML = numeros_carton[index];
     }
+}
+
+function rellenarCarton() {
+
+    let numero_aleatorio;
+    numeros_carton = generarNumerosCarton();
+    // ordenarNumerosCarton(numeros_carton);
+    dibujarNumerosCarton(numeros_carton);
+    bomboArray();
+
+    /* comprobarCartonLuisa (numeros_carton);
+     var array_no_estan = obtenerNumerosQueNoEstan (numeros_carton);
+     console.log (array_no_estan);
+     console.log ("longi no están " + array_no_estan.length);*/
 
 }
 
@@ -179,4 +229,90 @@ function dibujarCarton() {
         }
         tabla.appendChild(fila);
     }
+}
+
+//está mal, no uso parámetro
+function devolverMenor(array_numeros) {
+    let num_menor;
+    let num_mayor;
+
+    num_menor = numeros_carton.sort(deMenorAMayor);
+
+    num_mayor = num_menor[num_menor.length - 1];
+
+    console.log("Número mayor con length: " + num_mayor)
+
+    return num_menor[0];
+}
+
+function devolverMayor(array_numeros) {
+    let num_mayor;
+
+    num_mayor = numeros_carton.sort(deMayoraMenor);
+
+    return num_mayor[0];
+}
+
+function jugar() {
+    //sacarbola
+
+    sacarBola(bombo);
+    //comprobarbola
+}
+
+function sacarBola(num){
+
+    let bola_sacada;
+    bola_sacada =  bombo[pos_bombo];
+    document.getElementById.("bola").innerHTML = bombo[pos_bombo];
+    pos_bombo++;
+    return bola_sacada;
+
+}
+
+function comprobarBola(bola, num_carton){
+    if (num_carton.includes(bola)){
+        //tachar quitarlo del array
+        //comprobar si bingo
+            //si bingo felicitar y reiniciar
+            //si no bingo jugar
+    } else{
+        jugar();
+    }
+}
+
+function bomboArray() {
+
+    for (var i = 1; i <= 90; i++) {
+        bombo.push(i);
+        i++;
+    }
+
+    //Shuffle el array cuan lista de spotify
+    console.log(bombo);
+    shuffle(bombo);
+    console.log(bombo);
+    console.log("Bombo barajado");
+}
+
+/*function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+  return array;
+}*/
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+
+
+function pintarBola(bombo) {
+
 }
