@@ -29,8 +29,9 @@ function funciones() {
 const MAX_FILAS = 3;
 const MAX_COLUMNAS = 9;
 var num_carton = [];
-var bombo = [];//todas las bolas
-var pos_bombo = 0;//bola por la que voy
+var bombo = []; //todas las bolas
+var pos_bombo = 0; //bola por la que voy
+var aciertos = 0;
 
 //Haciéndolo nosotros
 function deMenorAMayor(a, b) {
@@ -174,12 +175,12 @@ function dibujarNumerosCarton(numeros_carton) {
 
 function rellenarCarton() {
 
-    let numero_aleatorio;
+    //let numero_aleatorio;
     num_carton = generarNumerosCarton();
     ordenarNumerosCarton(num_carton);
     dibujarNumerosCarton(num_carton);
     bomboArray();
-    jugar();
+    //jugar();
 
     /* comprobarCartonLuisa (numeros_carton);
      var array_no_estan = obtenerNumerosQueNoEstan (numeros_carton);
@@ -229,37 +230,53 @@ function devolverMayor(array_numeros) {
     return num_mayor[0];
 }
 
-function sacarBola(num){
+function sacarBola(num) {
     let bola_sacada;
-    bola_sacada =  bombo[pos_bombo];
+    bola_sacada = bombo[pos_bombo];
     console.log(bola_sacada);
-    document.getElementById("bola").innerHTML = bola_sacada;
+    document.getElementById("bola").innerHTML = "Ha salido el " + bola_sacada;
     pos_bombo++;
+    console.log("Posición bombo:" + pos_bombo)
     return bola_sacada;
 }
 
 function jugar() {
-    //sacarbola
     let bola_sacada = sacarBola(bombo);
-    //comprobarbola
+    comprobarBola(bola_sacada, num_carton);
+    
 }
 
-function comprobarBola(bola, num_carton){
-    if (num_carton.includes(bola)){
-        //tachar quitarlo del array
-        //comprobar si bingo
-            //si bingo felicitar y reiniciar
-            //si no bingo jugar
-    } else{
-        jugar();
+function comprobarBola(bola, carton) {
+
+    if (num_carton.includes(bola)) {
+        console.log("Tachar");
+        //Sumar aciertos
+        aciertos++;
+        console.log(aciertos);
+        //Quitarlo del array
+        let tachar = num_carton.indexOf(bola);
+        num_carton.splice(tachar, 1, "x");
+        console.log(num_carton);
+        //Pintarlo en el cartón
+        let array_tds = document.getElementsByTagName("td");
+        array_tds[tachar].innerHTML = "<p class='imgcelda'><img src='marca.png' class='tachon' alt='tachón'></p>";
+
+        //Comprobar si hay bingo
+        //si bingo felicitar y reiniciar
+        if (aciertos == 27) {
+            console.log("BINGO");
+            alert("BINGO");
+            location.reload(true);
+        }
+    //si no bingo jugar
+    } else {
+        console.log("No está el número");
     }
 }
 
 function bomboArray() {
-
     for (var i = 1; i <= 90; i++) {
         bombo.push(i);
-        i++;
     }
 
     //Shuffle el array cuan lista de spotify
@@ -284,5 +301,4 @@ function shuffle(a) {
     return a;
 }
 
-function pintarBola(bombo) {
-}
+function pintarBola(bombo) {}
