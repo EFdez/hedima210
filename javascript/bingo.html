@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <title>Ejercicio Bingo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FONT
@@ -83,12 +82,13 @@
         <div class="row">
             <div class="u-pull-right two columns lateralder">
                 <button onclick="jugar()">Jugar</button>
-                <button onclick="">Parar</button>
+                <button onclick="parar()">Parar</button>
                    <div class="row containerimg">
                    <div style="position:relative;height: 150px; width: 100%; display: inline-block; margin-bottom: 10px;"> 
-                    <img src="lisa.gif" alt="" style="position: relative; width: 100%;"><span id="bola"></span>
+                    <img id="animacion" src="img/lisa.gif" alt="lisabinguera" style="visibility: hidden; position: relative; width: 100%;"><div style="visibility:hidden" id="bola"></div>
                 </div>
             </div><!-- Cierre .containerimg -->
+            <div id="posicion_bombo"></div>
             </div>
             <div class="nine
                  columns u-full-width">

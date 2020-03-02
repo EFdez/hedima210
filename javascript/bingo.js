@@ -32,6 +32,7 @@ var num_carton = [];
 var bombo = []; //todas las bolas
 var pos_bombo = 0; //bola por la que voy
 var aciertos = 0;
+var tiempo; //capturar intervalo tiempo para poder parar
 
 //Haciéndolo nosotros
 function deMenorAMayor(a, b) {
@@ -238,16 +239,39 @@ function sacarBola(num) {
     pos_bombo++;
     console.log("Posición bombo:" + pos_bombo)
     return bola_sacada;
+
 }
 
+
 function jugar() {
-    let bola_sacada = sacarBola(bombo);
-    comprobarBola(bola_sacada, num_carton);
     
+    let bola_sacada = sacarBola(bombo);
+    dibujarAnimacion();
+    tiempo = setTimeout(function() {
+        comprobarBola(bola_sacada,num_carton);
+    }, 1000);
+
+}
+
+
+function parar(){
+    clearTimeout(tiempo);
+    console.log("Se ha parado")
+}
+
+function dibujarAnimacion(){
+    document.getElementById("animacion").style.visibility = "visible";
+    document.getElementById("bola").style.visibility = "hidden"
+}
+
+function eliminarAnimacion(){
+    document.getElementById("animacion").style.visibility = "hidden";
+    document.getElementById("bola").style.visibility = "visible"
 }
 
 function comprobarBola(bola, carton) {
 
+    eliminarAnimacion();
     if (num_carton.includes(bola)) {
         console.log("Tachar");
         //Sumar aciertos
@@ -259,18 +283,22 @@ function comprobarBola(bola, carton) {
         console.log(num_carton);
         //Pintarlo en el cartón
         let array_tds = document.getElementsByTagName("td");
-        array_tds[tachar].innerHTML = "<p class='imgcelda'><img src='marca.png' class='tachon' alt='tachón'></p>";
+        array_tds[tachar].innerHTML = "<p class='imgcelda'><img src='img/marca.png' class='tachon' alt='tachón'></p>";
 
         //Comprobar si hay bingo
         //si bingo felicitar y reiniciar
         if (aciertos == 27) {
             console.log("BINGO");
-            alert("BINGO");
+            alert("BINGO en " +pos_bombo+" movimientos");
             location.reload(true);
+        }
+        else{
+            setTimeout(jugar,2000);
         }
     //si no bingo jugar
     } else {
         console.log("No está el número");
+        jugar();
     }
 }
 
@@ -300,5 +328,3 @@ function shuffle(a) {
     }
     return a;
 }
-
-function pintarBola(bombo) {}
