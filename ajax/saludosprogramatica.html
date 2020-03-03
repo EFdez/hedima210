@@ -28,31 +28,42 @@
     </style>
 
     <script>
-  	
-  	const DIR_SERVICIO = "http://192.168.3.61:8080/saludos/Saludos?idioma=";
-  	const METODO = "GET";
-  	var xhr = new XMLHttpRequest();
 
-    	function saludo(el){
-    		var el_tocado = el.id; 
-    		//Llamar al servidor con el idioma
-    		//URL
-    		xhr.open(METODO, DIR_SERVICIO+ el_tocado);
-    		//concatenar el idioma al dir_servicio dependiendo de lo que se clique
-    		xhr.onreadystatechange = consultaEstado; //programar callback
-    		xhr.send();
+    const URL = "http://192.168.3.61:8080/saludos/Saludos?idioma=";
+    var idiomas_querida = new XMLHttpRequest();
+  	this.onload = crearP;
 
-    	}
+    function crearP(){
+        var array_ps = document.getElementsByTagName('p');
+        for (var i = 0; i < array_ps.length; i++) {
+            array_ps[i].onclick = saludo;
+        }
+    }
 
-    		function consultaEstado(){
+    function saludo(){
+        console.log("Ha hecho clic en " +this.id);
+        var string_servicio = URL+this.id;
+        console.log(string_servicio);
 
-    		if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) 
-    		{
-            console.log(xhr.responseText);
-			document.getElementById('caja_saludos').value = xhr.responseText;
-			}
+        idiomas_querida.open("GET", string_servicio, true);
+        idiomas_querida.onreadystatechange=consultaEstado;
+        idiomas_querida.send();
 
-    	}
+    }
+
+    function consultaEstado(){
+        console.log("consultaEstado invocada, estado = "+idiomas_querida.readyState);//para ver por dónde va el estado
+        if (idiomas_querida.readyState === 4){
+            console.log("La comunicación ha terminado con estatus: " +idiomas_querida.status);
+            if (idiomas_querida.status === 200){
+                console.log("La comunicación ha terminado");
+                console.log("Cuerpo de la respuesta " + idiomas_querida.responseText);
+                console.log("Tipo MIME de la respuesta " + idiomas_querida.responseType);
+            }
+        }
+    }
+
+    
 
     </script>
 </head>
@@ -72,12 +83,12 @@
 
 	 		<div class="five columns">
 	 			<img src="img/sp.png" alt="">
-	 			<p id="es" onclick="saludo(this)" class="button u-full-width">Español</p>
+	 			<p id="es" class="button u-full-width">Español</p>
 	 		</div>
 
 	 		<div class="five columns">
 	 			<img src="img/it.png" alt="">
-	 			<p id="it" onclick="saludo(this)" class="button u-full-width">Italiano</p>
+	 			<p id="it" class="button u-full-width">Italiano</p>
 	 		</div>
 
 	 	</div>
@@ -85,12 +96,12 @@
 	 	<div class="row">
 	 		<div class="five columns">
 	 			<img src="img/uk.png" alt="">
-	 			<p id="en" onclick="saludo(this)" class="button u-full-width">Inglés</p>
+	 			<p id="en" class="button u-full-width">Inglés</p>
 	 		</div>
 
 	 		<div class="five columns">
 	 			<img src="img/fr.png" alt="">
-	 			<p id="fr" onclick="saludo(this)" class="button u-full-width">Francés</p>
+	 			<p id="fr" class="button u-full-width">Francés</p>
 	 		</div>
 	 	</div>
 	 </div> <!-- cierre .container -->
