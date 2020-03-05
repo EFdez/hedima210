@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IMC</title>
+    <!-- Mobile Specific Metas
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <style>
+        img{
+                display: block;
+                width: 100%;
+            }
+    </style>
+
+    <script>
+
+    var xhttp = new XMLHttpRequest();
+    const URL = "http://192.168.3.82:8080/saludos/CalcularIMC";
+
+
+    function obtenerElementoImg() {
+        let elemento_img;
+        let padre = document.getElementById("hook_imagen");
+        if (padre.childElementCount == 0) {
+            console.log("No hay hijos.");
+            elemento_img = document.createElement("img");
+            padre.appendChild(elemento_img);
+        } else {
+            console.log("El img ya existe");
+            elemento_img = padre.firstChild;
+        }
+        return elemento_img;
+    }
+
+
+    function enviaDatos() {
+        var altura = document.getElementById("inAltura").value;
+        var peso = document.getElementById("inPeso").value;
+
+        var imc = {
+            altura: altura,
+            peso: peso
+        };
+
+        //alert("Persona altura = " + imc.altura);
+        //alert("Persona peso = " + imc.peso);
+
+        var imc_json = JSON.stringify(imc); //SERIALIZAR
+
+        xhttp.onreadystatechange = procesarEventos;
+        xhttp.open('POST', URL, true); 
+        xhttp.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhttp.send(imc_json); 
+
+    }
+
+    function procesarEventos() {
+         if (xhttp.readyState === 4) { //en lugar de 4 también puede ser xhttp.DONE
+             console.log("La comunicación ha terminado con estatus: " + xhttp.status);
+             if (xhttp.status === 200) {
+                 console.log("La comunicación ha terminado");
+                 console.log("Cuerpo de la respuesta " + xhttp.responseText);
+                convertirJSON(xhttp.responseText);
+             }
+         }
+     }
+
+     function convertirJSON(respuesta_str){
+        var objeto_json = JSON.parse(respuesta_str); //DESERIALIZAR
+        console.log(objeto_json);
+
+        var imc_nominal = objeto_json.imc_nominal;
+        var imc_numerico = objeto_json.imc_numerico;
+        var imc_imagen = objeto_json.imc_img;
+
+        console.log("IMC es " + imc_nominal);
+
+        let img_imc = obtenerElementoImg();
+        img_imc.src = imc_imagen;
+
+        document.getElementById("spEscala").value = imc_nominal;
+        document.getElementById("inResultado").value = Math.round(imc_numerico);
+     }
+
+     //encoding: la manera en que se codifican los caracteres UTF-8
+     //hay que setearlo en setRequestHeader con charset=UTF8 separando con punto y coma. No hay otro atributo específico para el coding.
+
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de Índice de Masa Corporal <span style="font-style: italic;">a le Jonah Hill*</span></h1>
+        <div class="row">
+            <div class="seven columns">
+                <form action="">
+                    <fieldset>
+                        <legend>Introduce los siguientes datos: </legend>
+                        <label for="peso">Peso en kilogramos:</label>
+                        <input type="text" placeholder="68 kg" id="inPeso"><br>
+                        <label for="altura">Altura en metros:</label>
+                        <input type="text" placeholder="1.70 m" id="inAltura"><br>
+                        <input class="button" id="btnCalcular" type="button" onclick="enviaDatos()" value="Calcular">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Resultado:</legend>
+                        <input readonly id="inResultado">
+                        <div>Usted se encuentra en el grupo:</div> <input id="spEscala">
+                    </fieldset>
+                    <p>*Gran actor, mejor persona.</p>
+                </form>
+            </div>
+            <!--cierre .seven-->
+            <div class="five columns" id="hook_imagen"></div>
+            <!--cierre .five-->
+        </div>
+        <!--cierre .row-->
+    </div>
+    <!--cierre .container-->
+</body>
+
+</html>

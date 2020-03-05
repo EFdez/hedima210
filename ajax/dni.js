@@ -16,8 +16,8 @@
          if (num_ok) {
              console.log("Número correcto");
              correcto = true;
-         } else {
-             console.log("Número incorrecto")
+         } else { //este else podría ir también en el if de obtenerLetraDni()
+             console.log("Número incorrecto");
              alert("Número introducido no válido");
              var resultado = document.getElementById("resultadoLetra").innerHTML = "Introduce un número válido."
          }
