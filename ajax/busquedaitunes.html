@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda iTunes</title>
+    <!-- Mobile Specific Metas
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- CSS
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <script src="itunes.js"></script>
+    <style>
+        body {
+        margin-top: 2em;
+    }
+
+    .txtcentrado {
+        text-align: center;
+    }
+    .txtizquierda {
+    	text-align: left;
+    }
+    .txtderecha{
+    	text-align: right;
+    }
+
+    .centrado {
+    	margin: 0 auto;
+    	display: block;
+    }
+    input{
+    	padding-bottom: 10px;
+    }
+
+    #btnBusqueda{
+    	margin-top: 2.5em ;
+    	margin-bottom: 4em;
+    }
+
+    img{
+    	width: 100%;
+    }
+
+    .eldisco{
+    	color: #A9A9A9;
+    }
+
+    /* Smaller than mobile */
+	@media (max-width: 550px) {
+		.contenedorinfo{
+			
+			text-align: center;
+		}
+		img{
+			width: 40%;
+			margin: 0 auto;
+			display: block;
+			margin-bottom: 1em;
+		}
+	}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row twelve columns textocentrado">
+            <h1 class="txtcentrado">Búsqueda iTunes</h1>
+        </div><!-- cierre .row .twelve -->
+        <div class="row">
+            <div class="twelve columns">
+                <p class="txtcentrado">Introduce el término de búsqueda:</p>
+                <input autofocus autocomplete type="text" id="inBusqueda" class="textocentrado centrado u-full-width">
+                <button class="button centrado" id="btnBusqueda"  value="lupa" onclick="buscar()"> </button>
+            </div> <!-- cierre .eleven -->
+        </div> <!-- cierre .row -->
+
+        <div class="row">
+        	<div class="twelve columns">
+        		<h3 class="txtcentrado">Resultados</h3>
+        	</div><!-- ccierre .twelve -->
+        </div> <!-- cierre .row -->
+        <div class="row">
+        	<div class="ten columns dvresultado">
+        		<div class="contenedorimg one-third column">
+        			<img class="elimagen" src="img/glitter.jpg" alt="prueba imagen">
+        		</div> <!-- cierre .contenedorimg -->
+        		<div class="contenedorinfo txtderecha">
+        		<h5 class="elartista">Autor</h5>
+        		<h6 class="elcancion" style="display: inline">Canción</h6> <span>-</span>
+        		<p class="eldisco" style="display: inline;">Disco</p>
+        		<audio controls class="elaudio" > 
+        		</audio>
+        		</div> <!-- cierre .contenedorinfo -->
+        		
+        	</div> <!-- cierre .ten .dvresultado -->
+        </div> <!-- cierre .row -->
+        
+    </div><!-- cierre .container -->
+</body>
+
+</html>
