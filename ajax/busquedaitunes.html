@@ -46,7 +46,9 @@
     img{
     	width: 100%;
     }
-
+    .elcancion, .eldisco {
+        display: inline-block;
+    }
     .eldisco{
     	color: #A9A9A9;
     }
@@ -75,8 +77,8 @@
         <div class="row">
             <div class="twelve columns">
                 <p class="txtcentrado">Introduce el término de búsqueda:</p>
-                <input autofocus autocomplete type="text" id="inBusqueda" class="textocentrado centrado u-full-width">
-                <button class="button centrado" id="btnBusqueda"  value="lupa" onclick="buscar()"> </button>
+                <input   type="search" id="inBusqueda" class="textocentrado centrado ">
+                <button class="button centrado" id="btnBusqueda"  value="" onclick="buscar()">Buscar </button>
             </div> <!-- cierre .eleven -->
         </div> <!-- cierre .row -->
 
@@ -92,10 +94,12 @@
         		</div> <!-- cierre .contenedorimg -->
         		<div class="contenedorinfo txtderecha">
         		<h5 class="elartista">Autor</h5>
-        		<h6 class="elcancion" style="display: inline">Canción</h6> <span>-</span>
-        		<p class="eldisco" style="display: inline;">Disco</p>
+        		<h6 class="elcancion" >Canción</h6> <span>-</span>
+        		<p class="eldisco">Disco</p>
+                <div class=row>
         		<audio controls class="elaudio" > 
         		</audio>
+            </div>
         		</div> <!-- cierre .contenedorinfo -->
         		
         	</div> <!-- cierre .ten .dvresultado -->

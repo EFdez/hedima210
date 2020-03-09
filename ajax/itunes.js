@@ -2,14 +2,12 @@
 //crear plantilla de elementos
 var xhr = new XMLHttpRequest();
 const URL = "https://itunes.apple.com/search/?media=music&term=";
-
+var num_eventos;
 
 function buscar() {
     let busqueda = document.getElementById("inBusqueda").value;
     console.log(busqueda);
     enviarDatos(busqueda);
-
-
 }
 
 function enviarDatos(termino_busqueda) {
@@ -41,7 +39,9 @@ function convertirJSON(respuesta_str) {
     console.log(resultados);
 
    	//console.log(resultados.results[0].previewUrl);
-
+    num_eventos = resultados.resultCount;
+    console.log(num_eventos)
+    crearElementos(num_eventos);
     pintar(resultados);
 
 }
@@ -59,10 +59,10 @@ function pintar(resultados) {
     console.log ("nueva previewUrl = " + resultados.results[0].previewUrl);
     elementoaudiosource.setAttribute("src",resultados.results[0].previewUrl);
     console.log ("src nuevo " + elementoaudiosource.src);
-
-
-
 }
+
+    function crearElementos(){
+    }
 
 //para introducirse en un obj:
 //resultados.results[0].artistName.
