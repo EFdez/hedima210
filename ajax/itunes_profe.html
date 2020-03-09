@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda iTunes</title>
+    <!-- Mobile Specific Metas
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <script>
+        const DIR_SERVICIO_ITUNES = "https://itunes.apple.com/search/?media=music&term="
+        var xhr = new XMLHttpRequest();//ajax
+
+        //PONER NUMERO DE FILA
+        //DEPURAR UNDEFINED
+
+        function buscarCanciones ()
+        {
+            console.log ("Tocó buscar");
+            let termino = document.getElementById("busqueda").value;
+
+            if (termino == ""){
+                alert("Rellena el campo de búsqueda")
+            }
+            else{
+
+            console.log ("Tocó buscar " + termino);
+            //hacer la petición
+                //1componer la url
+            let url = DIR_SERVICIO_ITUNES + termino;
+            let url_formateada = encodeURI (url);
+            console.log ("URL formateada " + url_formateada);
+                //2 llamo
+            xhr.open('GET', url_formateada);
+            xhr.onreadystatechange = mostrarResultados;
+            xhr.send();
+            }
+        }
+
+        function mostrarCancion (cancion)
+        {
+            //SIEMPRE DE DENTRO A FUERA
+
+            var celda_artista = document.createElement("td");
+            celda_artista.innerHTML = cancion.artistName;
+
+            var celda_cancion = document.createElement("td");
+            celda_cancion.innerHTML = cancion.trackName;
+
+            var celda_disco = document.createElement("td");
+            celda_disco.innerHTML = cancion.collectionName;
+
+            var celda_disco = document.createElement("td");
+            var reproductor = document.createElement("audio");
+            reproductor.setAttribute("src",cancion.previewUrl);
+            reproductor.setAttribute("controls",true);
+            celda_disco.appendChild(reproductor);
+
+            var celda_portada = document.createElement("td");
+            var portada = document.createElement("img");
+            portada.src = cancion.artworkUrl100;
+            celda_portada.appendChild(portada);
+
+            var fila = document.createElement("tr");
+            fila.appendChild(celda_artista);
+            fila.appendChild(celda_cancion);
+            fila.appendChild(celda_disco);
+            fila.appendChild(celda_portada);
+
+            document.getElementById("tablaCanciones").appendChild(fila); 
+         }
+
+         //Hacer función para borrar registros tabla antes de búsqueda
+         function borrarResultados()
+         {
+
+            var tabla = document.getElementById("tablaCanciones");
+            tabla.innerHTML="";
+        } 
+
+         
+        function mostrarResultados ()
+        {
+            if (xhr.readyState==4)
+            {
+                console.log ("Respuesta recibida");
+                if (xhr.status==200)
+                {
+                    console.log ("Respuesta buena");
+                    console.log ("BODY " + xhr.responseText);
+                    let resultados_busqueda = JSON.parse(xhr.responseText);
+                    borrarResultados();
+                    if(resultados_busqueda.resultCount == 0){
+                        alert("No existen registros")
+                    }
+                    else
+                    {
+                        for (let i = 0; i< resultados_busqueda.resultCount;i++ )
+                            {
+                                mostrarCancion (resultados_busqueda.results[i]);
+                            }
+                    }
+                } else {
+                    console.log ("Respuesta chunga " +xhr.status);
+                }
+            }
+        }
+    </script>
+    <style>
+        .cabecera-busqueda {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="eleven columns cabecera-busqueda">
+                <div class="twelve columns">
+                    <h1>Búsqueda de canciones:</h1>
+                </div>
+            <div class="eight columns">
+                <input autofocus class="u-full-width" type="text" id="busqueda">
+            </div> <!-- cierre .column -->
+            <div class="three columns" >
+                <input class="btn-buscar" type="button" onclick="buscarCanciones()" value="BUSCAR">
+            </div> <!-- cierre .column -->
+            </div><!-- cierre .elevencolumns -->
+        </div> <!-- cierre .row -->
+        <!-- HOOK PARA RESULTADOS DE BÚSQUEDA -->
+        <div class="row">
+            <div class="twelve columns">
+            <table id="tablaCanciones">
+            </table> 
+            </div>
+        </div><!-- cierre .row -->   
+    </div>
+</body>
+
+</html>

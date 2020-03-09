@@ -62,6 +62,10 @@ function pintar(resultados) {
 }
 
     function crearElementos(){
+
+    	/*for (let i = 0; i < resultados.resultCount.; i++) {
+    		resultados.results[i].artistName;
+    	}*/
     }
 
 //para introducirse en un obj:
